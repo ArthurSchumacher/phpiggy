@@ -1,2 +1,2 @@
 # phpiggy
- A PHP application to track expenses.
+ Uma aplicação em PHP para monitorar gastos financeiros.
