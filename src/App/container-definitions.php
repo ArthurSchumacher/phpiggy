@@ -3,8 +3,9 @@
 declare(strict_types=1);
 
 use Framework\{TemplateEngine, Database};
+use App\Services\{UserService, ValidatorService};
 use App\Config\Paths;
-use App\Services\ValidatorService;
+use Framework\Container;
 
 return [
     TemplateEngine::class => fn () => new TemplateEngine(Paths::VIEW),
@@ -19,5 +20,11 @@ return [
         ],
         $_ENV['DB_USER'],
         $_ENV['DB_PASS']
-    )
+    ),
+
+    UserService::class => function (Container $container) {
+        $db = $container->get(Database::class);
+
+        return new UserService($db);
+    }
 ];
